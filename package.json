@@ -10,7 +10,7 @@
     "serve:ssr:game-station-login": "node dist/game-station-login/server/server.mjs"
   },
   "private": true,
-  "packageManager": "npm@11.6.2",
+  "packageManager": "pnpm@10.30.3",
   "dependencies": {
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
