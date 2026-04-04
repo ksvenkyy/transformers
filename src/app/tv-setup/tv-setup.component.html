@@ -1,0 +1,65 @@
+<div class="gs-dashboard" role="main" aria-label="TV setup">
+  <header class="gs-dash-header">
+    <div>
+      <h1 class="gs-dash-title">TV Setup</h1>
+    </div>
+    <a
+      class="gs-icon-link"
+      routerLink="/dashboard"
+      aria-label="Back to dashboard"
+      title="Back to dashboard"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="m15 6-6 6 6 6M9 12h10"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
+  </header>
+
+  <section class="gs-dash-card gs-form-card" aria-label="TV setup form">
+    <form class="gs-form gs-form--wide" (ngSubmit)="onStart()" novalidate>
+      <div class="gs-field">
+        <label for="tvNo">Tv no</label>
+        <select id="tvNo" name="tvNo" [(ngModel)]="tvNo">
+          <option [ngValue]="null" disabled>Select Tv no</option>
+          @for (n of tvNoOptions; track n) {
+            <option [ngValue]="n">{{ n }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="gs-field">
+        <label for="consoleType">Type of console</label>
+        <select id="consoleType" name="consoleType" [(ngModel)]="consoleType">
+          <option [ngValue]="''" disabled>Select console type</option>
+          @for (c of consoleOptions; track c) {
+            <option [ngValue]="c">{{ c }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="gs-field">
+        <label for="peopleCount">No. of people</label>
+        <select id="peopleCount" name="peopleCount" [(ngModel)]="peopleCount">
+          <option [ngValue]="null" disabled>Select people</option>
+          @for (p of peopleOptions; track p) {
+            <option [ngValue]="p">{{ p }}</option>
+          }
+        </select>
+      </div>
+
+      <button class="gs-submit" type="submit">Start</button>
+
+      @if (message) {
+        <div class="gs-status" role="status">{{ message }}</div>
+      }
+    </form>
+  </section>
+</div>
+
