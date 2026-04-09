@@ -446,10 +446,12 @@ app-root {
   width: 100%;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 12px 12px;
+  padding: 13px 16px; 
   background: rgba(0, 0, 0, 0.18);
   color: #eaf2ff;
   outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-sizing: border-box;
 }
 
 .gs-field select {
@@ -976,4 +978,8 @@ app-root {
 .gs-table-select:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+body {
+  margin: 0;
 }
