@@ -1,36 +1,22 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
   templateUrl: './login.component.html',
 })
-export class LoginComponent {
-  protected username = '';
-  protected password = '';
-  protected rememberMe = true;
-  protected showPassword = false;
-  protected statusMessage = '';
+export class LoginComponent implements OnInit {
+  constructor(private authService: AuthService, private router: Router) { }
 
-  constructor(private readonly router: Router) {}
-
-  protected onSubmit(): void {
-    const u = this.username.trim();
-    if (!u || !this.password) {
-      this.statusMessage = 'Please enter a username and password.';
-      return;
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(['/dashboard']);
     }
-
-    // Demo-only login: navigate to dashboard.
-    void this.router.navigateByUrl('/dashboard');
   }
 
-  protected useDemoCredentials(): void {
-    this.username = 'player1';
-    this.password = 'letmein';
-    this.statusMessage = '';
+  login(): void {
+    this.authService.login();
   }
 }
 

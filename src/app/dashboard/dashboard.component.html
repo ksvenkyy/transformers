@@ -4,18 +4,12 @@
       <h1 class="gs-dash-title">Dashboard</h1>
     </div>
     <div class="gs-dash-actions">
-      <a class="gs-icon-link" routerLink="/" aria-label="Log out" title="Log out">
+      <button class="gs-icon-link" (click)="logout()" aria-label="Log out" title="Log out">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M10 4h-3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3m4-4 5-4-5-4m-1 4H9"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+          <path d="M10 4h-3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3m4-4 5-4-5-4m-1 4H9" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-      </a>
+      </button>
     </div>
   </header>
 
@@ -34,60 +28,51 @@
         </thead>
         <tbody>
           @for (row of tvs(); track row.tvNo) {
-            <tr>
-              <td class="gs-mono">{{ row.tvNo }}</td>
-              <td>
-                <select
-                  class="gs-table-select"
-                  [ngModel]="row.consoleType"
-                  (ngModelChange)="onConsoleChange(row, $event)"
-                  [disabled]="row.status === 'Running'"
-                >
-                  @for (c of consoleOptions; track c) {
-                    <option [ngValue]="c">{{ c }}</option>
-                  }
-                </select>
-              </td>
-              <td class="gs-mono">
-                <select
-                  class="gs-table-select"
-                  [ngModel]="row.peopleCount"
-                  (ngModelChange)="onPeopleChange(row, $event)"
-                  [disabled]="row.status === 'Running'"
-                >
-                  @for (p of peopleOptions; track p) {
-                    <option [ngValue]="p">{{ p }}</option>
-                  }
-                </select>
-              </td>
-              <td>
-                <span [class]="badgeClass(row.status)">{{ statusText(row) }}</span>
-              </td>
-              <td class="gs-mono">{{ amountRs(row) }}</td>
-              <td class="gs-col-actions">
-                <div class="gs-action-cell">
-                  @if (row.status !== 'Running') {
-                    <button class="gs-btn" type="button" (click)="start(row.tvNo)">
-                      Start
-                    </button>
-                  }
-                  @if (row.status === 'Running') {
-                    <button class="gs-btn gs-btn--danger" type="button" (click)="stop(row.tvNo)">
-                      Stop
-                    </button>
-                  }
-                  @if (row.status === 'Stopped') {
-                    <button class="gs-btn gs-btn--ghost" type="button" (click)="reset(row.tvNo)">
-                      Reset
-                    </button>
-                  }
-                </div>
-              </td>
-            </tr>
+          <tr>
+            <td class="gs-mono">{{ row.tvNo }}</td>
+            <td>
+              <select class="gs-table-select" [ngModel]="row.consoleType" (ngModelChange)="onConsoleChange(row, $event)"
+                [disabled]="row.status === 'Running'">
+                @for (c of consoleOptions; track c) {
+                <option [ngValue]="c">{{ c }}</option>
+                }
+              </select>
+            </td>
+            <td class="gs-mono">
+              <select class="gs-table-select" [ngModel]="row.peopleCount" (ngModelChange)="onPeopleChange(row, $event)"
+                [disabled]="row.status === 'Running'">
+                @for (p of peopleOptions; track p) {
+                <option [ngValue]="p">{{ p }}</option>
+                }
+              </select>
+            </td>
+            <td>
+              <span [class]="badgeClass(row.status)">{{ statusText(row) }}</span>
+            </td>
+            <td class="gs-mono">{{ amountRs(row) }}</td>
+            <td class="gs-col-actions">
+              <div class="gs-action-cell">
+                @if (row.status !== 'Running') {
+                <button class="gs-btn" type="button" (click)="start(row.tvNo)">
+                  Start
+                </button>
+                }
+                @if (row.status === 'Running') {
+                <button class="gs-btn gs-btn--danger" type="button" (click)="stop(row.tvNo)">
+                  Stop
+                </button>
+                }
+                @if (row.status === 'Stopped') {
+                <button class="gs-btn gs-btn--ghost" type="button" (click)="reset(row.tvNo)">
+                  Reset
+                </button>
+                }
+              </div>
+            </td>
+          </tr>
           }
         </tbody>
       </table>
     </div>
   </section>
 </div>
-
