@@ -1,7 +1,6 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +9,20 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private router: Router
   ) { }
 
-  async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-
-    if (!isPlatformBrowser(this.platformId)) {
-      return true;
-    }
+  async canActivate(route: ActivatedRouteSnapshot): Promise<boolean | UrlTree> {
 
     // ✅ Step 1: Authentication check
     if (!this.authService.isLoggedIn) {
       try {
         const refreshed = await this.authService.refreshToken();
         if (!refreshed || !this.authService.isLoggedIn) {
-          this.router.navigate(['/']);
-          return false;
+          return this.router.createUrlTree(['/']);
         }
       } catch {
-        this.router.navigate(['/']);
-        return false;
+        return this.router.createUrlTree(['/']);
       }
     }
 
@@ -45,8 +37,7 @@ export class AuthGuard implements CanActivate {
       );
 
       if (!hasRole) {
-        this.router.navigate(['/unauthorized']); // 🔥 key change
-        return false;
+        return this.router.createUrlTree(['/unauthorized']); // 🔥 key change
       }
     }
 
