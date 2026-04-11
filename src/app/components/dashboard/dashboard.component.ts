@@ -1,19 +1,24 @@
 import { Component, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { Tv, TvService, TvStatus } from '../tv.service';
+import { Tv, TvService, TvStatus } from '../../services/tv.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
   private readonly tvsService = inject(TvService);
+  private readonly authService = inject(AuthService);
   protected readonly tvs = this.tvsService.tvs;
 
   // Touch `nowMs` so the template updates once a second when running.
   protected readonly _tick = computed(() => this.tvsService.nowMs());
+
+  protected logout(): void {
+    this.authService.logout();
+  }
 
   protected badgeClass(status: TvStatus): string {
     switch (status) {
