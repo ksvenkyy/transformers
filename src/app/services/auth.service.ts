@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { getKeycloak } from './keycloak.service';
+import { getKeycloak } from '../services/keycloak.service';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +49,16 @@ export class AuthService {
 
   hasRole(role: string): boolean {
     return this.keycloak.hasRealmRole(role);
+  }
+
+  getUserRoles(): string[] {
+    const token = this.token;
+
+    if (!token) return [];
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    console.log('Decoded token payload:', payload); // Debugging log
+    // 🔥 Keycloak roles location
+    return payload?.resource_access?.['grafana-dashboard']?.roles || [];
   }
 }

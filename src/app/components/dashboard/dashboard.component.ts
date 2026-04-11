@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Tv, TvService, TvStatus } from '../tv.service';
-import { AuthService } from '../auth.service';
+import { Tv, TvService, TvStatus } from '../../services/tv.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',

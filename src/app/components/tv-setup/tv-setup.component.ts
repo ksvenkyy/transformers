@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { TvService } from '../tv.service';
+import { TvService } from '../../services/tv.service';
 
 @Component({
   selector: 'app-tv-setup',
@@ -21,7 +21,7 @@ export class TvSetupComponent {
   constructor(
     private readonly tvs: TvService,
     private readonly router: Router,
-  ) {}
+  ) { }
 
   protected onStart(): void {
     const tvNo = this.tvNo ?? NaN;

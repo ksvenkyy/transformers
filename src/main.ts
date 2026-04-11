@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { App } from './app/app';
-import { initializeKeycloak } from './app/keycloak.service';
+import { initializeKeycloak } from './app/services/keycloak.service';
 
 initializeKeycloak().then(() => {
   bootstrapApplication(App, appConfig)

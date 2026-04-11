@@ -983,3 +983,143 @@ app-root {
 body {
   margin: 0;
 }
+
+.nf-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle at top, #0b1220, #020617);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.nf-content {
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 20px 60px rgba(77, 194, 255, 0.15);
+}
+
+.nf-code {
+  font-size: 120px;
+  font-weight: 900;
+  margin: 0;
+
+  background: linear-gradient(90deg, #4dc2ff, #8a5cff, #ff4dd8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nf-title {
+  margin: 10px 0;
+  font-size: 28px;
+}
+
+.nf-subtitle {
+  opacity: 0.7;
+  margin-bottom: 24px;
+}
+
+.nf-button {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+
+  background: linear-gradient(90deg, #4dc2ff, #8a5cff, #ff4dd8);
+  color: #061018;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nf-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(138, 92, 255, 0.4);
+}
+
+.un-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle at top, #0b1220, #020617);
+  color: white;
+  text-align: center;
+}
+
+.un-content {
+  padding: 40px;
+  border-radius: 16px;
+
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 20px 60px rgba(255, 77, 77, 0.15);
+}
+
+.un-code {
+  font-size: 110px;
+  font-weight: 900;
+  margin: 0;
+
+  background: linear-gradient(90deg, #ff4d4d, #ff884d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.un-title {
+  margin: 10px 0;
+  font-size: 26px;
+}
+
+.un-subtitle {
+  opacity: 0.7;
+  margin-bottom: 24px;
+}
+
+.un-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.un-button {
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* Primary (gradient like your app) */
+.un-button.primary {
+  background: linear-gradient(90deg, #4dc2ff, #8a5cff, #ff4dd8);
+  color: #061018;
+}
+
+/* Secondary (subtle) */
+.un-button.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.un-button:hover {
+  transform: translateY(-2px);
+}
