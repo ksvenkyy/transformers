@@ -8,9 +8,10 @@ const keycloak = new Keycloak({
 
 export async function initializeKeycloak() {
   return keycloak.init({
-    onLoad: 'login-required',
-    pkceMethod: 'S256',
-    checkLoginIframe: true   // Enable iframe checking for token refresh
+    onLoad: 'check-sso',
+    silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
+    silentCheckSsoFallback: false,
+    pkceMethod: 'S256'
   });
 }
 
