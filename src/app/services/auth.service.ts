@@ -44,6 +44,9 @@ export class AuthService {
   }
 
   logout(): void {
+    sessionStorage.removeItem('kc_token');
+    sessionStorage.removeItem('kc_refreshToken');
+    sessionStorage.removeItem('kc_idToken');
     this.keycloak.logout();
   }
 
